@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_id: 
+  name: MyString
+  description: MyText
+  annual_cost: 9.99
+  prereq_id: 
+
+two:
+  service_id: 
+  name: MyString
+  description: MyText
+  annual_cost: 9.99
+  prereq_id: 

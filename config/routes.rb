@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :channels
+  resources :tiers
+  resources :services
   resources :users
   
   get "/auth/:provider/callback" => "sessions#create"
