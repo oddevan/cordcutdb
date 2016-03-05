@@ -1,5 +1,5 @@
 class TiersController < ApplicationController
-  skip_before_action :admin_only, only [:show, :index]
+  skip_before_action :admin_only, only: [:show, :index]
   before_action :set_tier, only: [:show, :edit, :update, :destroy]
 
   # GET /tiers
@@ -70,6 +70,6 @@ class TiersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tier_params
-      params.require(:tier).permit(:service_id, :name, :description, :annual_cost, :prereq_id)
+      params.require(:tier).permit(:service_id, :name, :description, :annual_cost, :prereq_id, :channel_ids => [])
     end
 end

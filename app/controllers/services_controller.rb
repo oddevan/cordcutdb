@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  skip_before_action :admin_only, only [:show, :index]
+  skip_before_action :admin_only, only: [:show, :index]
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   # GET /services

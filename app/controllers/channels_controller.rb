@@ -1,6 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: [:show, :edit, :update, :destroy]
-  skip_before_action :admin_only, only [:show, :index]
+  skip_before_action :admin_only, only: [:show, :index]
 
   # GET /channels
   # GET /channels.json
@@ -70,6 +70,6 @@ class ChannelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def channel_params
-      params.require(:channel).permit(:name, :description)
+      params.require(:channel).permit(:name, :description, :tier_ids)
     end
 end
