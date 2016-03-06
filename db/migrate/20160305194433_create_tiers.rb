@@ -5,7 +5,7 @@ class CreateTiers < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.decimal :annual_cost, :precision => 7, :scale => 2
-      t.references :prereq, index: true, foreign_key: true
+      t.references :prereq, index: true
 
       t.timestamps null: false
     end
