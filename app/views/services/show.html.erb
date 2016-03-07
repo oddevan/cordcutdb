@@ -3,9 +3,11 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
+  <% if current_user %>
   <%= link_to edit_service_path(@service), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
+  <% end %>
   <% end %>
   <h1>Show service</h1>
 </div>
@@ -18,3 +20,4 @@
   <dd><%= @service.description %></dd>
 
 </dl>
+

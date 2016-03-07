@@ -15,22 +15,20 @@
             <th>Description</th>
             <th>Annual cost</th>
             <th>Prereq</th>
-            <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @tiers) do |tier| %>
-            <td><%= tier.service %></td>
-            <td><%= tier.name %></td>
+            <td><%= link_to tier.service.name, tier.service %></td>
+            <td><%= link_to tier.name, tier %></td>
             <td><%= tier.description %></td>
             <td><%= tier.annual_cost %></td>
-            <td><%= tier.prereq %></td>
-            <td><%= link_to 'Show', tier %></td>
-        <td><%= link_to 'Edit', edit_tier_path(tier) %></td>
-        <td><%= link_to 'Destroy', tier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+            <% if tier.prereq %>
+              <%= link_to tier.prereq.name, tier.prereq %>
+            <% end %>
+            </td>
       <% end %>
     </tbody>
   </table>
