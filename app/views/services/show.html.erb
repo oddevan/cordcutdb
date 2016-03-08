@@ -28,6 +28,10 @@
   <% end %>
   </p>
   
+  <p>
+    <%= raw markdown.render(tier.description) %>
+  </p>
+  
   <% if tier.channels.any? %>
     <p><strong>Channels:</strong>
     <% tier.channels.each do |channel| %>

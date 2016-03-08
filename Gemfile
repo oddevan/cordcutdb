@@ -49,6 +49,8 @@ end
 group :production do
   # Use PostgreSQL on Heroku
   gem 'pg'
+  # For better Heroku
+  gem 'rails_12factor'
 end
 
 gem 'bootstrap-generators'
