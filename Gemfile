@@ -53,3 +53,4 @@ end
 
 gem 'bootstrap-generators'
 gem 'omniauth-github'
+gem 'redcarpet'

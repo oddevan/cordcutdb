@@ -9,15 +9,30 @@
     Edit
   <% end %>
   <% end %>
-  <h1>Show service</h1>
+  <h1><%= @service.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @service.name %></dd>
+<p>
+  <%= raw markdown.render(@service.description) %>
+</p>
 
-  <dt>Description:</dt>
-  <dd><%= @service.description %></dd>
+<div class="page-header">
+  <h2>Available Tiers</h2>
+</div>
 
-</dl>
-
+<% @service.tiers.each do |tier| %>
+  <h3><%= tier.name %></h3>
+  <p><strong>Cost:</strong> <%= tier.annual_cost %> / year
+  <% if tier.prereq %>
+    + <%= tier.prereq.name %>
+  <% end %>
+  </p>
+  
+  <% if tier.channels.any? %>
+    <p><strong>Channels:</strong>
+    <% tier.channels.each do |channel| %>
+      <%= link_to channel.name, channel, class: 'label label-default' %>
+    <% end %>
+    </p>
+  <% end %>
+<% end %>

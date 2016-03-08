@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user
+  helper_method :markdown
   
   before_action :admin_only
  
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
     unless current_user && current_user.is_admin?
       redirect_to root_url, :alert => "Access denied."
     end
+  end
+  
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, footnotes: true, strikethrough: true)
   end
 end
