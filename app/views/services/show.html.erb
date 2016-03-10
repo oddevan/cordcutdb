@@ -15,6 +15,11 @@
 
 <%= raw markdown.render(@service.description) %>
 
+<p>
+  <% if @service.on_demand %><span class="label label-primary">On-Demand</span><% end %>
+  <% if @service.live %><span class="label label-success">Live</span><% end %>
+</p>
+
 <% if @service.review && !@service.review.empty? %>
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -43,7 +48,7 @@
   </p>
   
   <% if tier.channels.any? %>
-    <p><strong>Channels:</strong>
+    <p><strong>Live channels:</strong>
     <% tier.channels.each do |channel| %>
       <%= link_to channel.name, channel, class: 'label label-default' %>
     <% end %>
