@@ -15,7 +15,7 @@
 
 <%= raw markdown.render(@service.description) %>
 
-<% if @service.review %>
+<% if @service.review && !@service.review.empty? %>
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">oddEvan's View</h3>
