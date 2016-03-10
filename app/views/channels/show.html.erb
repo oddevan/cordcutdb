@@ -3,16 +3,16 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
+  <% if current_user %>
   <%= link_to edit_channel_path(@channel), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
+  <% end %>
   <h1><%= @channel.name %></h1>
 </div>
 
-<p>
-  <%= raw markdown.render(@channel.description) %>
-</p>
+<%= raw markdown.render(@channel.description) %>
 
 <div class="page-header">
   <h2>Available through</h2>

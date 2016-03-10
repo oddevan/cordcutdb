@@ -9,12 +9,22 @@
     Edit
   <% end %>
   <% end %>
+  <%= link_to 'Visit website', @service.website, class: 'btn btn-success' %>
   <h1><%= @service.name %></h1>
 </div>
 
-<p>
-  <%= raw markdown.render(@service.description) %>
-</p>
+<%= raw markdown.render(@service.description) %>
+
+<% if @service.review %>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">oddEvan's View</h3>
+  </div>
+  <div class="panel-body">
+    <%= raw markdown.render(@service.review) %>
+  </div>
+</div>
+<% end %>
 
 <div class="page-header">
   <h2>Available Tiers</h2>

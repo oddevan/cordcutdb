@@ -1,7 +1,9 @@
 <div class="page-header">
+  <% if current_user %>
   <%= link_to new_channel_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
     New Channel
+  <% end %>
   <% end %>
   <h1>Listing channels</h1>
 </div>
@@ -12,19 +14,13 @@
       <tr>
             <th>Name</th>
             <th>Description</th>
-            <th></th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <%= content_tag_for(:tr, @channels) do |channel| %>
-            <td><%= channel.name %></td>
+            <td><%= link_to channel.name, channel %></td>
             <td><%= channel.description %></td>
-            <td><%= link_to 'Show', channel %></td>
-        <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
-        <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tbody>
   </table>

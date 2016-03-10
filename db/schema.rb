@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305195343) do
+ActiveRecord::Schema.define(version: 20160310015236) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 20160305195343) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "website"
+    t.text     "review"
   end
 
   create_table "tiers", force: :cascade do |t|
