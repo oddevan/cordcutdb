@@ -22,8 +22,8 @@
     <tbody>
       <%= content_tag_for(:tr, @services) do |service| %>
             <td><%= link_to service.name, service %></td>
-            <td><% if @service.live %><span class="label label-success">Live</span><% end %></td>
-            <td><% if @service.on_demand %><span class="label label-primary">On-Demand</span><% end %></td>
+            <td><% if service.live %><span class="label label-success">Live</span><% end %></td>
+            <td><% if service.on_demand %><span class="label label-primary">On-Demand</span><% end %></td>
             <td><%= service.description %></td>
       <% end %>
     </tbody>
