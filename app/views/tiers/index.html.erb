@@ -13,6 +13,7 @@
             <th>Service</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Monthly cost</th>
             <th>Annual cost</th>
             <th>Prereq</th>
       </tr>
@@ -23,6 +24,7 @@
             <td><%= link_to tier.service.name, tier.service %></td>
             <td><%= link_to tier.name, tier %></td>
             <td><%= tier.description %></td>
+            <td><%= tier.monthly_cost %></td>
             <td><%= tier.annual_cost %></td>
             <td>
             <% if tier.prereq %>
