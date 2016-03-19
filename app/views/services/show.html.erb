@@ -37,7 +37,12 @@
 
 <% @service.tiers.each do |tier| %>
   <h3><%= tier.name %></h3>
-  <p><strong>Cost:</strong> <%= tier.annual_cost %> / year
+  <p><strong>Cost:</strong>
+  <% if tier.monthly_cost %>
+    <%= tier.monthly_cost %> / month 
+  <% else %>
+    <%= tier.annual_cost %> / year
+  <% end %>
   <% if tier.prereq %>
     + <%= tier.prereq.name %>
   <% end %>

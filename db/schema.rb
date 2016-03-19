@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310015236) do
+ActiveRecord::Schema.define(version: 20160312001009) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -32,16 +32,19 @@ ActiveRecord::Schema.define(version: 20160310015236) do
     t.datetime "updated_at",  null: false
     t.string   "website"
     t.text     "review"
+    t.boolean  "on_demand"
+    t.boolean  "live"
   end
 
   create_table "tiers", force: :cascade do |t|
     t.integer  "service_id"
     t.string   "name"
     t.text     "description"
-    t.decimal  "annual_cost", precision: 7, scale: 2
+    t.decimal  "annual_cost",  precision: 7, scale: 2
     t.integer  "prereq_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.decimal  "monthly_cost", precision: 7, scale: 2
   end
 
   add_index "tiers", ["prereq_id"], name: "index_tiers_on_prereq_id"
