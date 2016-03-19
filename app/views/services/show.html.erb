@@ -59,4 +59,11 @@
     <% end %>
     </p>
   <% end %>
+  
+  <% if current_user %>
+  <%= link_to edit_tier_path(tier), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit tier
+  <% end %>
+  <% end %>
 <% end %>
