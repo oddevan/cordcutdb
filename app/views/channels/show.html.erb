@@ -24,7 +24,7 @@
       <tr>
             <th>Service</th>
             <th>Tier</th>
-            <th>Annual cost</th>
+            <th>Cost</th>
       </tr>
     </thead>
 
@@ -32,7 +32,13 @@
       <%= content_tag_for(:tr, @channel.tiers) do |tier| %>
         <td><%= link_to tier.service.name, tier.service %></td>
         <td><%= tier.name %></td>
-        <td><%= tier.annual_cost %></td>
+        <td>
+          <% if tier.monthly_cost %>
+            <%= tier.monthly_cost %> / month 
+          <% else %>
+            <%= tier.annual_cost %> / year
+          <% end %>
+        </td>
       <% end %>
     </tbody>
   </table>
