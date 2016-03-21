@@ -1,0 +1,44 @@
+<%= form_for(@lock, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @lock.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@lock.errors.count, "error") %> prohibited this lock from being saved:</h4>
+
+      <ul>
+      <% @lock.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :tier_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :tier_id, Tier.all, :id, :name, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :region_id, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.collection_select :region_id, Region.all, :id, :name, {}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Channels', class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <%= f.collection_check_boxes(:channel_ids, Channel.all, :id, :name, {}, {}) do |b| %>
+        <div class="col-sm-6">
+          <%= b.label { b.check_box + ' ' + b.text} %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

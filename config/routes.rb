@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :locks
+  resources :regions
   resources :channels
   resources :tiers
   resources :services
@@ -12,6 +14,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'dashboard#home'
+  
+  if Rails.env.development?
+  	get '/signin' => 'sessions#create'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

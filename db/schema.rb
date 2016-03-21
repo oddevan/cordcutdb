@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312001009) do
+ActiveRecord::Schema.define(version: 20160320231620) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -20,9 +20,30 @@ ActiveRecord::Schema.define(version: 20160312001009) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "channels_locks", id: false, force: :cascade do |t|
+    t.integer "channel_id", null: false
+    t.integer "lock_id",    null: false
+  end
+
   create_table "channels_tiers", id: false, force: :cascade do |t|
     t.integer "channel_id", null: false
     t.integer "tier_id",    null: false
+  end
+
+  create_table "locks", force: :cascade do |t|
+    t.integer  "tier_id"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "locks", ["region_id"], name: "index_locks_on_region_id"
+  add_index "locks", ["tier_id"], name: "index_locks_on_tier_id"
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "services", force: :cascade do |t|

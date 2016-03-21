@@ -1,28 +1,25 @@
 <div class="page-header">
-  <%= link_to channels_path, class: 'btn btn-default' do %>
+  <%= link_to regions_path, class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
   <% if current_user %>
-  <%= link_to edit_channel_path(@channel), class: 'btn btn-primary' do %>
+  <%= link_to edit_region_path(@region), class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-pencil"></span>
     Edit
   <% end %>
   <% end %>
-  <h1><%= @channel.name %></h1>
+  <h1><%= @region.name %></h1>
 </div>
 
-<%= raw markdown.render(@channel.description) %>
-
 <div class="page-header">
-  <h2>Available through</h2>
+  <h2>Services available</h2>
 </div>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Region</th>
             <th>Service</th>
             <th>Tier</th>
             <th>Cost</th>
@@ -30,20 +27,7 @@
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @channel.tiers) do |tier| %>
-        <td></td>
-        <td><%= link_to tier.service.name, tier.service %></td>
-        <td><%= tier.name %></td>
-        <td>
-          <% if tier.monthly_cost %>
-            <%= tier.monthly_cost %> / month 
-          <% else %>
-            <%= tier.annual_cost %> / year
-          <% end %>
-        </td>
-      <% end %>
-      <%= content_tag_for(:tr, @channel.locks) do |lock| %>
-        <td><%= link_to lock.region.name, lock.region %></td>
+      <%= content_tag_for(:tr, @region.locks) do |lock| %>
         <td><%= link_to lock.tier.service.name, lock.tier.service %></td>
         <td><%= lock.tier.name %></td>
         <td>
@@ -57,3 +41,6 @@
     </tbody>
   </table>
 </div>
+
+<p class="text-muted">Other services may be available on a nationwide basis; these services offer local or regional
+channels specific to this market.</p>
