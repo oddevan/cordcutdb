@@ -4,4 +4,5 @@ class Tier < ActiveRecord::Base
   has_and_belongs_to_many :channels
   has_many :locks
   has_and_belongs_to_many :regions
+  default_scope { order(name: :asc) }
 end
