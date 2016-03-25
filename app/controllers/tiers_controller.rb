@@ -70,6 +70,6 @@ class TiersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tier_params
-      params.require(:tier).permit(:service_id, :name, :description, :monthly_cost, :annual_cost, :prereq_id, :channel_ids => [])
+      params.require(:tier).permit(:service_id, :name, :description, :monthly_cost, :annual_cost, :prereq_id, :channel_ids => [], :region_ids => [])
     end
 end

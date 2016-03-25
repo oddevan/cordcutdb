@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320231620) do
+ActiveRecord::Schema.define(version: 20160325133352) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20160320231620) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "regions_services", id: false, force: :cascade do |t|
+    t.integer "region_id",  null: false
+    t.integer "service_id", null: false
+  end
+
+  create_table "regions_tiers", id: false, force: :cascade do |t|
+    t.integer "region_id", null: false
+    t.integer "tier_id",   null: false
   end
 
   create_table "services", force: :cascade do |t|

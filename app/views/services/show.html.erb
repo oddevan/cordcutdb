@@ -20,6 +20,13 @@
   <% if @service.live %><span class="label label-success">Live</span><% end %>
 </p>
 
+<% if @service.regions.any? %>
+  <p><strong class="text-danger">Available in:</strong>
+  <% @service.regions.each do |region| %>
+    <%= link_to region.name, region, class: 'label label-default' %>
+  <% end %>
+<% end %>
+
 <% if @service.review && !@service.review.empty? %>
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -52,6 +59,13 @@
     <%= raw markdown.render(tier.description) %>
   </p>
   
+  <% if tier.regions.any? %>
+    <p><strong class="text-danger">Available in:</strong>
+    <% tier.regions.each do |region| %>
+      <%= link_to region.name, region, class: 'label label-default' %>
+    <% end %>
+  <% end %>
+  
   <% if tier.channels.any? %>
     <p><strong>Live channels:</strong>
     <% tier.channels.each do |channel| %>
@@ -63,6 +77,11 @@
   <% if tier.locks.any? %>
     <h4>Regional channels</h4>
     <% tier.locks.each do |lock| %>
+      <p><strong><%= lock.region.name %>:</strong>
+      <% lock.channels.each do |channel| %>
+        <%= link_to channel.name, channel, class: 'label label-default' %>
+      <% end %>
+      </p>
     <% end %>
   <% end %>
   
