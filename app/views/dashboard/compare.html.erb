@@ -1,0 +1,94 @@
+<h1>Comparing <%= @left_service.name %> and <%= @right_service.name %></h1>
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title"><%= @left_service.name %></h2></div>
+            <div class="panel-body">
+                <%= raw markdown.render(@left_service.description) %>
+            </div>
+
+            <div class="list-group">
+            <% @left_service.tiers.each do |tier| %>
+                <label for="<%= "lefttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "lefttier#{tier.id}" %>"> <%= tier.name %></label>
+            <% end %>
+            </div>
+            
+            <div class="panel-footer"><strong>Total cost:</strong> <span id="left_total"></span></div>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title"><%= @right_service.name %></h2></div>
+            <div class="panel-body">
+                <%= raw markdown.render(@right_service.description) %>
+            </div>
+
+            <div class="list-group">
+            <% @right_service.tiers.each do |tier| %>
+                <label for="<%= "righttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "righttier#{tier.id}" %>"> <%= tier.name %></label>
+            <% end %>
+            </div>
+            
+            <div class="panel-footer"><strong>Total cost:</strong> <span id="right_total"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Channels <span class="badge" id="left_numchannels"></span></h3></div>
+            
+            <ul class="list-group" id="left_channellist">
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="panel panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Channels <span class="badge" id="right_numchannels"></span></h3></div>
+            
+            <ul class="list-group" id="right_channellist">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+(function ($) {
+    <% @left_service.tiers.each do |tier| %>
+    var lefttier<%= tier.id %> = {
+        cost: <%= tier.monthly_cost %>,
+        channelcount: <%= tier.channels.length() %>,
+        channels: [
+            <% tier.channels.each do |channel| %>
+            '<li class="list-group-item"><%= channel.name %></li>',
+            <% end %>
+        ],
+    };
+    
+    $('#lefttier<%= tier.id %>').checked(function() {
+        
+    });
+        
+    <% end %>
+    
+    <% @right_service.tiers.each do |tier| %>
+    var righttier<%= tier.id %> = {
+        cost: <%= tier.monthly_cost %>,
+        channelcount: <%= tier.channels.length() %>,
+        channels: [
+            <% tier.channels.each do |channel| %>
+            '<li class="list-group-item"><%= channel.name %></li>',
+            <% end %>
+        ],
+        <% if tier.prereq %>
+        prereq: 'righttier<%= tier.prereq.id %>',
+        <% end %>
+    };
+        
+    <% end %>
+})(jquery);
+
+</script>
