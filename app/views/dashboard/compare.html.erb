@@ -8,9 +8,9 @@
                 <%= raw markdown.render(@left_service.description) %>
             </div>
 
-            <div class="list-group">
+            <div class="list-group" id="lefttiers">
             <% @left_service.tiers.each do |tier| %>
-                <label for="<%= "lefttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "lefttier#{tier.id}" %>"> <%= tier.name %></label>
+                <label for="<%= "lefttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "lefttier#{tier.id}" %>" onClick="refreshLeft()"> <%= tier.name %></label>
             <% end %>
             </div>
             
@@ -24,9 +24,9 @@
                 <%= raw markdown.render(@right_service.description) %>
             </div>
 
-            <div class="list-group">
+            <div class="list-group" id="righttiers">
             <% @right_service.tiers.each do |tier| %>
-                <label for="<%= "righttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "righttier#{tier.id}" %>"> <%= tier.name %></label>
+                <label for="<%= "righttier#{tier.id}" %>" class="list-group-item"><input type="checkbox" id="<%= "righttier#{tier.id}" %>" onClick="refreshRight()"> <%= tier.name %></label>
             <% end %>
             </div>
             
@@ -41,6 +41,9 @@
             <div class="panel-heading"><h3 class="panel-title">Channels <span class="badge" id="left_numchannels"></span></h3></div>
             
             <ul class="list-group" id="left_channellist">
+            <% @left_channels.each do |channel| %>
+                <li class="list-group-item" class="collapse" id="leftchannel<%= channel.id %>"><%= channel.name %></li>
+            <% end %>
             </ul>
         </div>
     </div>
@@ -49,6 +52,9 @@
             <div class="panel-heading"><h3 class="panel-title">Channels <span class="badge" id="right_numchannels"></span></h3></div>
             
             <ul class="list-group" id="right_channellist">
+            <% @right_channels.each do |channel| %>
+                <li class="list-group-item" class="collapse" id="rightchannel<%= channel.id %>"><%= channel.name %></li>
+            <% end %>
             </ul>
         </div>
     </div>
@@ -56,39 +62,52 @@
 
 <script type="text/javascript">
 
-(function ($) {
-    <% @left_service.tiers.each do |tier| %>
-    var lefttier<%= tier.id %> = {
-        cost: <%= tier.monthly_cost %>,
-        channelcount: <%= tier.channels.length() %>,
-        channels: [
-            <% tier.channels.each do |channel| %>
-            '<li class="list-group-item"><%= channel.name %></li>',
-            <% end %>
-        ],
-    };
-    
-    $('#lefttier<%= tier.id %>').checked(function() {
-        
-    });
-        
-    <% end %>
-    
-    <% @right_service.tiers.each do |tier| %>
-    var righttier<%= tier.id %> = {
-        cost: <%= tier.monthly_cost %>,
-        channelcount: <%= tier.channels.length() %>,
-        channels: [
-            <% tier.channels.each do |channel| %>
-            '<li class="list-group-item"><%= channel.name %></li>',
-            <% end %>
-        ],
-        <% if tier.prereq %>
-        prereq: 'righttier<%= tier.prereq.id %>',
+<% @left_service.tiers.each do |tier| %>
+var lefttier<%= tier.id %> = {
+    cost: <%= tier.monthly_cost %>,
+    channelcount: <%= tier.channels.length() %>,
+    channels: [
+        <% tier.channels.each do |channel| %>
+        '#leftchannel<%= channel.id %>',
         <% end %>
-    };
-        
+    ],
+    <% if tier.prereq %>
+    prereq: '#lefttier<%= tier.prereq.id %>',
     <% end %>
-})(jquery);
+};
+    
+<% end %>
+/////////////
+
+<% @right_service.tiers.each do |tier| %>
+var righttier<%= tier.id %> = {
+    cost: <%= tier.monthly_cost %>,
+    channelcount: <%= tier.channels.length() %>,
+    channels: [
+        <% tier.channels.each do |channel| %>
+        '#rightchannel<%= channel.id %>',
+        <% end %>
+    ],
+    <% if tier.prereq %>
+    prereq: '#righttier<%= tier.prereq.id %>',
+    <% end %>
+};
+    
+<% end %>
+////////////
+
+var refreshLeft = function() {
+    var prereqchanged = false;
+    $('#lefttiers input').each(function() {
+    });
+};
+
+var refreshRight = function() {
+};
+
+jQuery(document).ready(function() {
+    refreshLeft();
+    refreshRight();
+});
 
 </script>
