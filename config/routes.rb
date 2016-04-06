@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   
   get "/compare/:left/:right/" => 'dashboard#compare'
   
+  get "/faq/" => 'dashboard#faq'
+  get "/dishonorable-mentions/" => 'dashboard#dismen'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

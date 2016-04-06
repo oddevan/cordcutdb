@@ -1,7 +1,13 @@
 class DashboardController < ApplicationController
-    skip_before_action :admin_only, only: [:home, :compare]
+    skip_before_action :admin_only #, only: [:home, :compare]
 
     def home
+    end
+    
+    def faq
+    end
+    
+    def dismen
     end
     
     def compare
