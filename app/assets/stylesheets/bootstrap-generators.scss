@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 @import "bootstrap-variables.scss";
+
+$headings-font-family:    'Montserrat' $font-family-sans-serif;
+$headings-font-weight:    400;
+
 @import "bootstrap-sprockets.scss";
 @import "bootstrap.scss";
 
