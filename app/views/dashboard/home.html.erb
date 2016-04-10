@@ -1,1 +1,18 @@
 <h1>Welcome!</h1>
+
+<p>This is Cordcut DB, a comprehensive listing of premium over-the-top 
+television and video providers that are driving the internet-based television world forward.</p>
+
+<div class="jumbotron">
+    <p>Try this random service</p>
+    
+    <h2><%= @service.name %></h2>
+    
+    <%= raw markdown.render(@service.description) %>
+    
+    <p class="text-right"><%= link_to "Learn more about #{service.name}", service, class: 'btn btn-primary' %></p>
+</div>
+
+<p><%= link_to 'Browse all services', services_url, class: 'btn btn-default' %></p>
+
+<p><%= link_to 'Browse all channels', channels_url, class: 'btn btn-default' %></p>
