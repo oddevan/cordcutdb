@@ -30,3 +30,5 @@
   <dd><%= @tier.prereq ? @tier.prereq.name : 'n/a' %></dd>
 
 </dl>
+
+<%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
