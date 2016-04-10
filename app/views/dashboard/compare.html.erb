@@ -75,45 +75,51 @@
 </div>
 
 <script type="text/javascript">
-var leftTotal = 0;
+//var leftTotal = 0;
 
 <% @left_service.tiers.each do |tier| %>
 function leftTier<%= tier.id %>Checked() {
     if($('#lefttier<%= tier.id %>').prop('checked')) {
         $('#left_channellist .tier<%=tier.id %>').addClass('tier<%= tier.id %>-active');
-        leftTotal += <%= tier.monthly_cost %>;
+
+        //leftTotal += <%= tier.monthly_cost %>;
+
         <% if tier.prereq %>
         $('#lefttier<%= tier.prereq.id %>').prop('checked', 'checked');
         leftTier<%= tier.prereq.id %>Checked();
         <% end %>
     } else {
         $('#left_channellist .tier<%=tier.id %>').removeClass('tier<%= tier.id %>-active');
-        leftTotal -= <%= tier.monthly_cost %>;
+
+        //leftTotal -= <%= tier.monthly_cost %>;
     }
     
-    $('#left_total').html('$'+leftTotal);
+    //$('#left_total').html('$'+leftTotal);
 }
 
 <% end %>
 //////////
 
-var rightTotal = 0;
+//var rightTotal = 0;
 
 <% @right_service.tiers.each do |tier| %>
 function rightTier<%= tier.id %>Checked() {
     if($('#righttier<%= tier.id %>').prop('checked')) {
         $('#right_channellist .tier<%=tier.id %>').addClass('tier<%= tier.id %>-active');
-        rightTotal += <%= tier.monthly_cost %>;
+
+        //rightTotal += <%= tier.monthly_cost %>;
+
         <% if tier.prereq %>
         $('#righttier<%= tier.prereq.id %>').prop('checked', 'checked');
         rightTier<%= tier.prereq.id %>Checked();
         <% end %>
     } else {
         $('#right_channellist .tier<%=tier.id %>').removeClass('tier<%= tier.id %>-active');
-        rightTotal -= <%= tier.monthly_cost %>;
+
+        //rightTotal -= <%= tier.monthly_cost %>;
     }
     
-    $('#right_total').html('$'+rightTotal);
+    //$('#right_total').html('$'+rightTotal);
 }
 
 <% end %>
