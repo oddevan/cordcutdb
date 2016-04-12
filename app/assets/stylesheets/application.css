@@ -14,7 +14,3 @@
  *= require _bootstrap.scss
  *= require_self
  */
-
-.compare-channel {
-    color: lightgray;
-}
