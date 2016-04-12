@@ -53,6 +53,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'bootstrap-generators'
+#gem 'bootstrap-generators'
 gem 'omniauth-github'
 gem 'redcarpet'
