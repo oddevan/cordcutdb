@@ -80,7 +80,7 @@
   <% if tier.locks.any? %>
     <h4>Regional channels</h4>
     <% tier.locks.each do |lock| %>
-      <p><strong><%= lock.region.name %>:</strong>
+      <p><strong><%= lock.regions.join(', ') %>:</strong>
       <% lock.channels.each do |channel| %>
         <%= link_to channel.name, channel, class: 'label label-default' %>
       <% end %>

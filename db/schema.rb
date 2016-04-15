@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325133352) do
+ActiveRecord::Schema.define(version: 20160415013631) do
 
   create_table "channels", force: :cascade do |t|
     t.string   "name"
@@ -32,13 +32,17 @@ ActiveRecord::Schema.define(version: 20160325133352) do
 
   create_table "locks", force: :cascade do |t|
     t.integer  "tier_id"
-    t.integer  "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
-  add_index "locks", ["region_id"], name: "index_locks_on_region_id"
   add_index "locks", ["tier_id"], name: "index_locks_on_tier_id"
+
+  create_table "locks_regions", id: false, force: :cascade do |t|
+    t.integer "lock_id",   null: false
+    t.integer "region_id", null: false
+  end
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"

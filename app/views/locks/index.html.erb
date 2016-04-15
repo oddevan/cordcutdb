@@ -10,8 +10,8 @@
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
+            <th>Name</th>
             <th>Tier</th>
-            <th>Region</th>
             <th></th>
         <th></th>
         <th></th>
@@ -20,8 +20,8 @@
 
     <tbody>
       <%= content_tag_for(:tr, @locks) do |lock| %>
+            <td><%= lock.name %></td>
             <td><%= lock.tier.name %></td>
-            <td><%= lock.region.name %></td>
             <td><%= link_to 'Show', lock %></td>
         <td><%= link_to 'Edit', edit_lock_path(lock) %></td>
         <td><%= link_to 'Destroy', lock, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -70,6 +70,6 @@ class LocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lock_params
-      params.require(:lock).permit(:tier_id, :region_id, :channel_ids => [])
+      params.require(:lock).permit(:name, :tier_id, :region_ids => [], :channel_ids => [])
     end
 end
