@@ -79,13 +79,32 @@
   
   <% if tier.locks.any? %>
     <h4>Regional channels</h4>
-    <% tier.locks.each do |lock| %>
-      <p><strong><%= lock.regions.join(', ') %>:</strong>
-      <% lock.channels.each do |channel| %>
-        <%= link_to channel.name, channel, class: 'label label-default' %>
-      <% end %>
-      </p>
-    <% end %>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+                <th>Regions</th>
+                <th>Channels</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= content_tag_for(:tr, tier.locks) do |lock| %>
+            <td>
+              <% lock.regions.each do |region| %>
+                <%= link_to region.name, region, class: 'label label-default' %>
+              <% end %>
+            </td>
+            <td>
+              <% lock.channels.each do |channel| %>
+                <%= link_to channel.name, channel, class: 'label label-default' %>
+              <% end %>
+            </td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   <% end %>
   
   <% if current_user %>
