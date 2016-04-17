@@ -43,7 +43,7 @@
         </td>
       <% end %>
       <%= content_tag_for(:tr, @channel.locks) do |lock| %>
-        <td><%= link_to lock.region.name, lock.region %></td>
+        <td><% lock.regions.each do |region| %><%= link_to region.name, region, class: 'label label-default' %><% end %></td>
         <td><%= link_to lock.tier.service.name, lock.tier.service %></td>
         <td><%= lock.tier.name %></td>
         <td>
