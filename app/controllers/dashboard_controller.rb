@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
     skip_before_action :admin_only #, only: [:home, :compare]
 
     def home
-        @service = Service.where.not(description: '').order("RANDOM()").first
+        all_services = Service.where.not(description: '')
+        @service = all_services[rand(all_services.count)]
     end
     
     def faq
