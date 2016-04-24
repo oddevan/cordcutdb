@@ -1,0 +1,75 @@
+<div class="tier"> 
+    <h3><%= tier.name %></h3>
+    <p><strong>Cost:</strong>
+    <% if tier.monthly_cost %>
+        <%= tier.monthly_cost %> / month 
+        <% if tier.annual_cost %>
+        or <%= tier.annual_cost %> / year
+        <% end %>
+    <% else %>
+        <%= tier.annual_cost %> / year
+    <% end %>
+    </p>
+
+    <p>
+        <%= raw markdown.render(tier.description) %>
+    </p>
+
+    <% if tier.regions.any? %>
+        <p><strong class="text-danger">Available in:</strong>
+        <% tier.regions.each do |region| %>
+        <%= link_to region.name, region, class: 'label label-default' %>
+        <% end %>
+    <% end %>
+
+    <% if tier.channels.any? %>
+        <p><strong>Live channels:</strong>
+        <% tier.channels.each do |channel| %>
+        <%= link_to channel.name, channel, class: 'label label-default' %>
+        <% end %>
+        </p>
+    <% end %>
+
+    <% if tier.locks.any? %>
+        <h4>Regional channels</h4>
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                    <th>Regions</th>
+                    <th>Channels</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <%= content_tag_for(:tr, tier.locks) do |lock| %>
+                <td>
+                <% lock.regions.each do |region| %>
+                    <%= link_to region.name, region, class: 'label label-default' %>
+                <% end %>
+                </td>
+                <td>
+                <% lock.channels.each do |channel| %>
+                    <%= link_to channel.name, channel, class: 'label label-default' %>
+                <% end %>
+                </td>
+            <% end %>
+            </tbody>
+        </table>
+        </div>
+
+    <% end %>
+
+    <% if current_user %>
+    <%= link_to edit_tier_path(tier), class: 'btn btn-primary' do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+        Edit tier
+    <% end %>
+    <% end %>
+
+    <% if tier.addons.any? %>
+    <% tier.addons.each do |subtier| %>
+        <%= render subtier %>
+    <% end %>
+    <% end %>
+</div>

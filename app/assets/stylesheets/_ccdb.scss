@@ -19,9 +19,27 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .compare-channel {
-    color: lightgray;
+    color: $text-muted;
 }
 
 .table .label {
   font-size: 12px;
+}
+
+div.tier {
+  border-left: 5px solid $brand-info;
+  border-bottom: 1px solid $brand-info;
+  padding-left: ($grid-gutter-width / 2);
+  
+  div.tier {
+    border-color: $brand-primary;
+    
+    div.tier {
+      border-color: $brand-success;
+      
+      div.tier {
+        border-color: $brand-warning;
+      }
+    }
+  }
 }
