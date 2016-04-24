@@ -19,6 +19,12 @@
     </div>
   </div>
   <div class="form-group">
+    <%= f.label :summary, class: "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.text_field :summary, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
     <%= f.label :tier_id, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= f.collection_select :tier_id, Tier.all, :id, :name, {}, {class: 'form-control'} %>
