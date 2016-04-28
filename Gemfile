@@ -59,4 +59,3 @@ end
 #gem 'bootstrap-generators'
 gem 'omniauth-github'
 gem 'redcarpet'
-gem 'seed_dump'
