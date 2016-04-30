@@ -66,10 +66,12 @@
     <%= yield %>
   
     <div class="well well-sm text-center">
-      &copy; <a href="http://eph.me/">Evan Hildreth</a>.<br>
+      <p>&copy; <a href="http://eph.me/">Evan Hildreth</a>.<br>
       <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Content licensed under a Creative Commons Attribution-Share Alike 4.0 International License</a>.<br>
       <a href="http://github.com/oddevan/cordcutdb/">Source code available on GitHub.</a><br>
-      <a href="https://en.wikipedia.org/wiki/List_of_United_States_television_markets">Television market information from Wikipedia.</a>
+      <a href="https://en.wikipedia.org/wiki/List_of_United_States_television_markets">Television market information from Wikipedia.</a></p>
+      
+      <p><a href="mailto:me@eph.me?subject=<%= url_encode('Cordcut DB Feedback') %>&amp;body=<%= url_encode("Feedback on the page at #{request.original_url}") %>" class="btn btn-default">Send feedback</a></p>
     </div>
   
   </div>
