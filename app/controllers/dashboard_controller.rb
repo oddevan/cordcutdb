@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
     def compare
         @all_channels = [];
     
-        @left_service = Service.find(params[:left])
+        @left_service = Service.friendly.find(params[:left])
         @left_channels = []
         @left_service.tiers.each do |tier|
             @left_channels = @left_channels | tier.channels
@@ -31,7 +31,7 @@ class DashboardController < ApplicationController
             end
         end
         
-        @right_service = Service.find(params[:right])
+        @right_service = Service.friendly.find(params[:right])
         @right_channels = []
         @right_service.tiers.each do |tier|
             @right_channels = @right_channels | tier.channels
