@@ -13,6 +13,26 @@ television and video providers that are driving the internet-based television wo
     <p class="text-right"><%= link_to "Learn more about #{@service.name}", @service, class: 'btn btn-primary' %></p>
 </div>
 
-<p><%= link_to 'Browse all services', services_url, class: 'btn btn-default' %></p>
-
-<p><%= link_to 'Browse all channels', channels_url, class: 'btn btn-default' %></p>
+<div class="row">
+    <div class="col-md-9">
+        <p>Latest article</p>
+        <h2><%= link_to @article.name, @article %></h2>
+        
+        <p><%= @article.excerpt %></p>
+        
+        <p class="text-right"><%= link_to "Read more", @article, class: 'btn btn-primary' %></p>
+    </div>
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <p><%= link_to 'Browse all services', services_url, class: 'btn btn-default btn-block' %></p>
+            </div>
+            <div class="col-sm-4 col-md-12">
+                <p><%= link_to 'Browse all channels', channels_url, class: 'btn btn-default btn-block' %></p>
+            </div>
+            <div class="col-sm-4 col-md-12">
+                <p><%= link_to 'Browse all articles', articles_url, class: 'btn btn-default btn-block' %></p>
+            </div>
+        </div>
+    </div>
+</div>

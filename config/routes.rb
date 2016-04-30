@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :articles
   resources :locks
   resources :regions
   resources :channels

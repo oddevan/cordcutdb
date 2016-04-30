@@ -1,0 +1,21 @@
+<div class="page-header">
+  <% if current_user %>
+  <%= link_to new_article_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Article
+  <% end %>
+  <% end %>
+  <h1>Listing articles</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+  <% @articles.each do |article| %>
+    <article class="ccdb-article">
+      <h2><%= link_to article.name, article %></h2>
+      <p><%= article.excerpt %></p>
+      <p class="text-right"><%= link_to "Read more", article, class: 'btn btn-default' %></p>
+    </article>
+  <% end %>
+  </div>
+</div>

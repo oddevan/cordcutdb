@@ -4,6 +4,8 @@ class DashboardController < ApplicationController
     def home
         all_services = Service.where.not(description: '')
         @service = all_services[rand(all_services.count)]
+        
+        @article = Article.all().first();
     end
     
     def faq
