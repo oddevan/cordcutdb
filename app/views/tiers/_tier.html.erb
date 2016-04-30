@@ -1,6 +1,6 @@
 <div class="tier"> 
     <h3><%= tier.name %></h3>
-    <p><strong>Cost:</strong>
+    <p><strong><%= tier.prereq ? 'Additional cost:' : 'Cost:' %></strong>
     <% if tier.monthly_cost %>
         <%= tier.monthly_cost %> / month 
         <% if tier.annual_cost %>

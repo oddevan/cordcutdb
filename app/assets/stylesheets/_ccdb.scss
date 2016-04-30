@@ -19,7 +19,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .compare-channel {
-    color: $text-muted;
+    color: lighten($text-muted, 20%);
 }
 
 .table .label {

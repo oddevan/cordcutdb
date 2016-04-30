@@ -1,8 +1,10 @@
+<% content_for :title, "Comparing #{@left_service.name} and #{@right_service.name}" %>
+
 <h1>Comparing <%= @left_service.name %> and <%= @right_service.name %></h1>
 
 <style type="text/css">
 <% (@left_service.tiers | @right_service.tiers).each do |tier| %>
-.tier<%= tier.id %>-active { color: black; }
+.tier<%= tier.id %>-active { color: white; }
 <% end %>
 </style>
 
@@ -16,7 +18,7 @@
 
             <div class="list-group" id="lefttiers">
             <% @left_service.tiers.each do |tier| %>
-                <label for="lefttier<%= tier.id %>" class="list-group-item"><input type="checkbox" id="lefttier<%= tier.id %>" onClick="leftTier<%= tier.id %>Checked()"> <%= tier.name %></label>
+                <label for="lefttier<%= tier.id %>" class="list-group-item"><input type="checkbox" id="lefttier<%= tier.id %>" data-price="<%= tier.monthly_cost.to_i %>" onClick="leftTier<%= tier.id %>Checked()"> <%= tier.name %></label>
             <% end %>
             </div>
             
@@ -32,7 +34,7 @@
 
             <div class="list-group" id="righttiers">
             <% @right_service.tiers.each do |tier| %>
-                <label for="righttier<%= tier.id %>" class="list-group-item"><input type="checkbox" id="righttier<%= tier.id %>" onClick="rightTier<%= tier.id %>Checked()"> <%= tier.name %></label>
+                <label for="righttier<%= tier.id %>" class="list-group-item"><input type="checkbox" id="righttier<%= tier.id %>" data-price="<%= tier.monthly_cost.to_i %>" onClick="rightTier<%= tier.id %>Checked()"> <%= tier.name %></label>
             <% end %>
             </div>
             
@@ -75,7 +77,6 @@
 </div>
 
 <script type="text/javascript">
-//var leftTotal = 0;
 
 <% @left_service.tiers.each do |tier| %>
 function leftTier<%= tier.id %>Checked() {
@@ -90,17 +91,22 @@ function leftTier<%= tier.id %>Checked() {
         <% end %>
     } else {
         $('#left_channellist .tier<%=tier.id %>').removeClass('tier<%= tier.id %>-active');
-
-        //leftTotal -= <%= tier.monthly_cost %>;
     }
     
-    //$('#left_total').html('$'+leftTotal);
+    updateLeftPrice();
 }
 
 <% end %>
-//////////
 
-//var rightTotal = 0;
+function updateLeftPrice() {
+    var leftTotal = 0;
+    $('#lefttiers input:checked').each(function() {
+        leftTotal += $(this).data('price');
+    });
+    
+    $('#left_total').html('$'+leftTotal);
+}
+//////////
 
 <% @right_service.tiers.each do |tier| %>
 function rightTier<%= tier.id %>Checked() {
@@ -115,13 +121,21 @@ function rightTier<%= tier.id %>Checked() {
         <% end %>
     } else {
         $('#right_channellist .tier<%=tier.id %>').removeClass('tier<%= tier.id %>-active');
-
-        //rightTotal -= <%= tier.monthly_cost %>;
     }
     
-    //$('#right_total').html('$'+rightTotal);
+    updateRightPrice();
 }
 
 <% end %>
+
+function updateRightPrice() {
+    var rightTotal = 0;
+    
+    $('#righttiers input:checked').each(function() {
+        rightTotal += $(this).data('price');
+    });
+    
+    $('#right_total').html('$'+rightTotal);
+}
 
 </script>
