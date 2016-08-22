@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430203927) do
+ActiveRecord::Schema.define(version: 20160822224423) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "name"
@@ -36,11 +36,6 @@ ActiveRecord::Schema.define(version: 20160430203927) do
 
   add_index "channels", ["slug"], name: "index_channels_on_slug", unique: true
 
-  create_table "channels_locks", id: false, force: :cascade do |t|
-    t.integer "channel_id", null: false
-    t.integer "lock_id",    null: false
-  end
-
   create_table "channels_tiers", id: false, force: :cascade do |t|
     t.integer "channel_id", null: false
     t.integer "tier_id",    null: false
@@ -58,40 +53,6 @@ ActiveRecord::Schema.define(version: 20160430203927) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-
-  create_table "locks", force: :cascade do |t|
-    t.integer  "tier_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.string   "summary"
-  end
-
-  add_index "locks", ["tier_id"], name: "index_locks_on_tier_id"
-
-  create_table "locks_regions", id: false, force: :cascade do |t|
-    t.integer "lock_id",   null: false
-    t.integer "region_id", null: false
-  end
-
-  create_table "regions", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "slug"
-  end
-
-  add_index "regions", ["slug"], name: "index_regions_on_slug", unique: true
-
-  create_table "regions_services", id: false, force: :cascade do |t|
-    t.integer "region_id",  null: false
-    t.integer "service_id", null: false
-  end
-
-  create_table "regions_tiers", id: false, force: :cascade do |t|
-    t.integer "region_id", null: false
-    t.integer "tier_id",   null: false
-  end
 
   create_table "services", force: :cascade do |t|
     t.string   "name"

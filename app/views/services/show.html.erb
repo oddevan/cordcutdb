@@ -22,13 +22,6 @@
   <% if @service.live %><span class="label label-success">Live</span><% end %>
 </p>
 
-<% if @service.regions.any? %>
-  <p><strong class="text-danger">Available in:</strong>
-  <% @service.regions.each do |region| %>
-    <%= link_to region.name, region, class: 'label label-default' %>
-  <% end %>
-<% end %>
-
 <% if @service.review && !@service.review.empty? %>
 <div class="panel panel-info">
   <div class="panel-heading">
