@@ -18,6 +18,7 @@
             <th>Live</th>
             <th>On-demand</th>
             <th>Description</th>
+            <% if current_user %><th>Admin</th><% end %>
       </tr>
     </thead>
 
@@ -27,6 +28,10 @@
             <td><% if service.live %><span class="label label-success">Live</span><% end %></td>
             <td><% if service.on_demand %><span class="label label-primary">On-Demand</span><% end %></td>
             <td><%= service.description %></td>
+            <% if current_user %><td>
+              <%= link_to 'Edit', edit_service_path(service), class: 'btn btn-sm btn-warning' %>
+              <%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+            </td><% end %>
       <% end %>
     </tbody>
   </table>
